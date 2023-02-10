@@ -1,11 +1,14 @@
 # short_link
 # ttl
-
-<%= form_with url: "/generate", method: :post do |form| %>
-  <%= form.date_field :expired_at %>
-  <%= form.label :link, "Your link" %>
-  <%= form.text_field :link %>
-  <%= form.label :short_link, "Your short link" %>
-  <%= form.text_field :short_link %>
-  <%= form.submit "Get my short link" %>
+<%# может быть путь? %>
+<%= simple_form_for(@form, method: :post, url: generate_path) do |f| %>
+  <%= f.date_field :expired_at %>
+  <%= f.error :expired_at %>
+  <%= f.label :link, "Your link" %>
+  <%= f.text_field :link %>
+  <%= f.error :link %>
+  <%= f.label :short_link, "Your short link" %>
+  <%= f.text_field :short_link %>
+  <%= f.error :short_link %>
+  <%= f.submit "Get my short link" %>
 <% end %>
