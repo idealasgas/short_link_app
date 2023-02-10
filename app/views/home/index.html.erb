@@ -1,2 +1,11 @@
 # short_link
 # ttl
+
+<%= form_with url: "/generate", method: :post do |form| %>
+  <%= form.date_field :expired_at %>
+  <%= form.label :link, "Your link" %>
+  <%= form.text_field :link %>
+  <%= form.label :short_link, "Your short link" %>
+  <%= form.text_field :short_link %>
+  <%= form.submit "Get my short link" %>
+<% end %>

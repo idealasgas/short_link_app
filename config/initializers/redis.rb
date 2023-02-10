@@ -1,0 +1,1 @@
+Redis.current = ShortLinkApp.redis
