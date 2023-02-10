@@ -2,13 +2,8 @@
 # ttl
 <%# может быть путь? %>
 <%= simple_form_for(@form, method: :post, url: generate_path) do |f| %>
-  <%= f.date_field :expired_at %>
-  <%= f.error :expired_at %>
-  <%= f.label :link, "Your link" %>
-  <%= f.text_field :link %>
-  <%= f.error :link %>
-  <%= f.label :short_link, "Your short link" %>
-  <%= f.text_field :short_link %>
-  <%= f.error :short_link %>
+  <%= f.input :expired_at, as: :date, label: 'Expire at' %>
+  <%= f.input :link, label: 'Your link' %>
+  <%= f.input :short_link, label: "Your short link" %>
   <%= f.submit "Get my short link" %>
 <% end %>
