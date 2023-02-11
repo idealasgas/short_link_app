@@ -38,8 +38,4 @@ class ShortLinkForm
     uri = URI.parse(link)
     errors.add(:link, "invalid") unless uri.is_a?(URI::HTTP) && !uri.host.nil?
   end
-
-  def expiration_seconds
-    expired_at.present? ? (expired_at.to_time - Time.current).to_i : 30.days.to_i
-  end
 end

@@ -7,9 +7,9 @@ class HomeController < ApplicationController
 
   def generate
     @form = ShortLinkForm.new(permitted_params)
-
+    # лок на редис?????????????
     if @form.valid?
-      @token = save_in_redis
+      @token = ::ShortLinkGenerationService.call(@form.link, @form.expired_at, @form.short_link)
       render :index
     else
       render :index
@@ -20,22 +20,5 @@ class HomeController < ApplicationController
 
   def permitted_params
     params.permit(short_link_form: [:link, :short_link, :expired_at]).dig(:short_link_form)
-  end
-
-  def save_in_redis # запихнуть в сервис
-    if @form.short_link.present?
-      Redis.current.setnx(@form.short_link, @form.link)
-      Redis.current.expire(@form.short_link, @form.expiration_seconds)
-      @form.short_link
-    else
-      token = SecureRandom.hex(5)
-
-      if Redis.current.setnx(token, @form.link)
-        Redis.current.expire(token, @form.expiration_seconds)
-        token
-      else
-        save_in_redis
-      end
-    end
   end
 end
