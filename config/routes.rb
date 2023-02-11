@@ -4,4 +4,5 @@ Rails.application.routes.draw do
   root 'home#index'
 
   post '/generate', to: 'home#generate'
+  get '/:token', to: 'redirect#redirect', as: :redirect, constraints: { token: /[A-Za-z0-9]{5,10}/ }
 end

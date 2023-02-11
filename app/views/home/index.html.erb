@@ -1,9 +1,10 @@
-# short_link
-# ttl
-<%# может быть путь? %>
 <%= simple_form_for(@form, method: :post, url: generate_path) do |f| %>
-  <%= f.input :expired_at, as: :date, label: 'Expire at' %>
+  <%= f.input :expired_at, as: :date, label: 'Expire at', html5: true %>
   <%= f.input :link, label: 'Your link' %>
   <%= f.input :short_link, label: "Your short link" %>
   <%= f.submit "Get my short link" %>
+<% end %>
+
+<% if @token.present? %>
+  Here is your link: <%= link_to redirect_url(token: @token), redirect_path(token: @token) %>
 <% end %>
