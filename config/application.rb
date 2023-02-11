@@ -33,5 +33,6 @@ module ShortLinkApp
 
     # Don't generate system test files.
     config.generators.system_tests = nil
+    config.autoload_paths << Rails.root.join('lib') # может и не надо
   end
 end
