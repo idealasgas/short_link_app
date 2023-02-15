@@ -1,7 +1,7 @@
 class ShortLinkForm
-  include ActiveModel::Validations # удалить?
-  include ActiveModel::Model # удалить?
-  extend ActiveModel::Naming # удалить?
+  include ActiveModel::Validations
+  include ActiveModel::Model
+  extend ActiveModel::Naming
 
   attr_accessor :link, :short_link, :expired_at
 
@@ -35,7 +35,9 @@ class ShortLinkForm
   end
 
   def link_is_valid
-    uri = URI.parse(link)
-    errors.add(:link, "invalid") unless uri.is_a?(URI::HTTP) && !uri.host.nil?
+    if link.present?
+      uri = URI.parse(link)
+      errors.add(:link, "invalid") unless uri.is_a?(URI::HTTP) && !uri.host.nil?
+    end
   end
 end

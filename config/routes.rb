@@ -5,5 +5,4 @@ Rails.application.routes.draw do
 
   post '/generate', to: 'home#generate'
   get '/:token', to: 'redirect#redirect', as: :redirect, constraints: { token: /[A-Za-z0-9]{5,10}/ }
-  get 'test_gauge', to: 'home#gauge'
 end
